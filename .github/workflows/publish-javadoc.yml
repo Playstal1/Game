@@ -1,0 +1,37 @@
+name: Deploy Javadoc
+on:
+  push:
+    branches: [ main, master ]
+permissions:
+  contents: write
+jobs:
+  publish-javadoc:
+    runs-on: ubuntu-latest
+    steps:
+      # 1. Получить код репозитория
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # 2. Установить JDK 17
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      # 3. ДАЕМ ПРАВА НА ЗАПУСК ГЛАВНОГО СКРИПТА (НОВЫЙ ШАГ)
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+
+      # 4. Генерировать Javadoc с помощью Gradle
+      - name: Generate Javadoc
+        run: ./gradlew javadoc
+
+      # 5. Опубликовать страницу на ветке gh-pages
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: ./build/docs/javadoc
+          force_orphan: true
