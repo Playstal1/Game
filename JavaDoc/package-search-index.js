@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"main.java.com.turngame"},{"l":"main.java.com.turngame.controller"},{"l":"main.java.com.turngame.exception"},{"l":"main.java.com.turngame.model"},{"l":"main.java.com.turngame.util"},{"l":"main.java.com.turngame.view"}];updateSearchResults();
