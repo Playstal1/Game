@@ -18,31 +18,115 @@ import javafx.stage.Stage;
 import java.util.Optional;
 
 /**
- * Основной класс представления игры
+ * Основной класс представления игры, отвечающий за пользовательский интерфейс.
+ * <p>
+ * Этот класс является центральным компонентом представления (View) в архитектуре MVC.
+ * Он отвечает за:
+ * <ul>
+ *   <li>Создание и управление всем пользовательским интерфейсом игры</li>
+ *   <li>Отображение игрового состояния (ресурсы, карта, день)</li>
+ *   <li>Обработку пользовательских действий (клики, нажатия кнопок)</li>
+ *   <li>Взаимодействие с контроллером ({@link GameController}) для выполнения игровых действий</li>
+ *   <li>Отображение диалоговых окон, меню и информации о игре</li>
+ * </ul>
+ * <p>
+ * Интерфейс построен с использованием JavaFX и организован в виде {@link BorderPane} с
+ * пятью основными областями:
+ * <ul>
+ *   <li><strong>Верхняя панель</strong>: Меню и информация о текущем дне</li>
+ *   <li><strong>Центральная область</strong>: Игровое поле в виде сетки клеток</li>
+ *   <li><strong>Левая панель</strong>: Информация об игроках и правила игры</li>
+ *   <li><strong>Правая панель</strong>: Панель действий игрока</li>
+ *   <li><strong>Нижняя панель</strong>: Строка статуса и прогресс игры</li>
+ * </ul>
+ * <p>
+ * Класс реализует паттерн Наблюдатель для обновления интерфейса при изменении игрового состояния.
+ *
+ * @author Playstall
+ * @version 1.0
+ * @see GameController
+ * @see BorderPane
+ * @see <a href="https://openjfx.io/javadoc/17/javafx.graphics/javafx/scene/control/package-summary.html">JavaFX Controls</a>
+ * @since 1.0
  */
 public class GameView {
+    /**
+     * Контроллер игры, обеспечивающий связь между представлением и моделью.
+     */
     private GameController gameController;
+    /**
+     * Основной макет пользовательского интерфейса, использующий компоновку BorderPane.
+     */
     private BorderPane mainLayout;
 
-    // Компоненты интерфейса
+
+    /**
+     * Метка для отображения текущего игрового дня.
+     */
     private Label dayLabel;
+
+    /**
+     * Метка для отображения ресурсов игрока.
+     */
     private Label playerResourcesLabel;
+
+    /**
+     * Метка для отображения ресурсов компьютерного противника (AI).
+     */
     private Label aiResourcesLabel;
+
+    /**
+     * Метка для отображения текущего статуса игры.
+     */
     private Label statusLabel;
+
+    /**
+     * Сетка для отображения игрового поля.
+     */
     private GridPane gameGrid;
+
+    /**
+     * Вертикальная панель для кнопок действий.
+     */
     private VBox actionButtons;
+
+    /**
+     * Вертикальная панель для отображения информации.
+     */
     private VBox infoPanel;
 
-    // Графики
+    /**
+     * Компонент для отображения графиков статистики (опциональный).
+     */
     private GraphView graphView;
 
+    /**
+     * Создает новое представление игры и инициализирует пользовательский интерфейс.
+     * <p>
+     * Конструктор создает новый контроллер игры и вызывает метод {@link #initializeUI()}
+     * для настройки всех компонентов интерфейса.
+     *
+     * @see GameController
+     * @see #initializeUI()
+     */
     public GameView() {
         this.gameController = new GameController();
         initializeUI();
     }
 
     /**
-     * Инициализирует пользовательский интерфейс
+     * Инициализирует все компоненты пользовательского интерфейса.
+     * <p>
+     * Метод создает и настраивает все элементы интерфейса, распределяя их по областям
+     * основного макета {@link BorderPane}. После инициализации вызывает метод
+     * {@link #updateView()} для первоначального заполнения данных.
+     *
+     * @see BorderPane
+     * @see #createTopPanel()
+     * @see #createGameCenter()
+     * @see #createActionPanel()
+     * @see #createInfoPanel()
+     * @see #createStatusBar()
      */
     private void initializeUI() {
         mainLayout = new BorderPane();
@@ -67,7 +151,19 @@ public class GameView {
     }
 
     /**
-     * Создает верхнюю панель с меню
+     * Создает верхнюю панель интерфейса, содержащую меню и информацию о текущем дне.
+     * <p>
+     * Включает следующие меню:
+     * <ul>
+     *   <li><strong>Игра</strong>: Новая игра, сохранение/загрузка, выход</li>
+     *   <li><strong>Статистика</strong>: Просмотр графиков</li>
+     *   <li><strong>Помощь</strong>: Информация об игре</li>
+     * </ul>
+     *
+     * @return элемент {@link Node}, содержащий верхнюю панель интерфейса
+     * @see MenuBar
+     * @see Menu
+     * @see MenuItem
      */
     private Node createTopPanel() {
         MenuBar menuBar = new MenuBar();
@@ -118,7 +214,16 @@ public class GameView {
     }
 
     /**
-     * Создает центральную панель с игровым полем
+     * Создает центральную область интерфейса, содержащую игровое поле.
+     * <p>
+     * Центральная область включает заголовок и сетку клеток игрового поля,
+     * размещенную внутри {@link ScrollPane} для поддержки прокрутки при
+     * больших размерах карты.
+     *
+     * @return элемент {@link Node}, содержащий центральную область с игровым полем
+     * @see GridPane
+     * @see ScrollPane
+     * @see #updateGameGrid()
      */
     private Node createGameCenter() {
         VBox centerPanel = new VBox(10);
@@ -144,7 +249,14 @@ public class GameView {
     }
 
     /**
-     * Обновляет игровую сетку
+     * Обновляет отображение игровой сетки на основе текущего состояния игры.
+     * <p>
+     * Метод полностью очищает текущую сетку и заново создает все клетки,
+     * используя данные из игровой модели. Каждая клетка представляется
+     * в виде {@link Button} с соответствующим стилем и обработчиком событий.
+     *
+     * @see #createTileButton(int, int, Tile)
+     * @see GridPane#getChildren()
      */
     private void updateGameGrid() {
         gameGrid.getChildren().clear();
@@ -160,7 +272,26 @@ public class GameView {
     }
 
     /**
-     * Создает кнопку для клетки
+     * Создает кнопку для представления одной клетки игрового поля.
+     * <p>
+     * Внешний вид кнопки зависит от состояния клетки:
+     * <ul>
+     *   <li><strong>Контролируется игроком</strong>: синий фон, текст "P"</li>
+     *   <li><strong>Контролируется AI</strong>: красный фон, текст "AI"</li>
+     *   <li><strong>Свободная клетка</strong>: серый фон, количество требуемых крестьян</li>
+     * </ul>
+     * Каждая кнопка имеет всплывающую подсказку с подробной информацией
+     * и обработчик клика для возможности захвата территории.
+     *
+     * @param x координата X клетки
+     * @param y координата Y клетки
+     * @param tile объект клетки ({@link Tile}) для отображения
+     * @return настроенная кнопка {@link Button} для представления клетки
+     * @throws NullPointerException если {@code tile} равен {@code null}
+     *
+     * @see Button
+     * @see Tooltip
+     * @see #handleTileClick(int, int)
      */
     private Button createTileButton(int x, int y, Tile tile) {
         Button button = new Button();
@@ -195,7 +326,19 @@ public class GameView {
     }
 
     /**
-     * Обрабатывает клик по клетке
+     * Обрабатывает событие клика по клетке игрового поля.
+     * <p>
+     * Если клетка свободна (не контролируется), показывает диалоговое окно
+     * с подтверждением захвата территории. При подтверждении пытается
+     * выполнить действие {@link ActionType#EXPLORE_TILE} через контроллер.
+     *
+     * @param x координата X клетки, по которой был произведен клик
+     * @param y координата Y клетки, по которой был произведен клик
+     *
+     * @see Alert
+     * @see GameController#performAction(ActionType, Object...)
+     * @see #updateView()
+     * @see #showError(String, String)
      */
     private void handleTileClick(int x, int y) {
         Tile tile = gameController.getGameModel().getTile(x, y);
@@ -219,7 +362,20 @@ public class GameView {
     }
 
     /**
-     * Создает панель действий
+     * Создает правую панель интерфейса с кнопками действий игрока.
+     * <p>
+     * Панель содержит следующие действия:
+     * <ul>
+     *   <li><strong>Набрать воды</strong>: Сбор воды крестьянами</li>
+     *   <li><strong>Полить рис</strong>: Полив риса (требуется 10 воды)</li>
+     *   <li><strong>Построить дом крестьянина</strong>: Строительство дома для производства крестьян</li>
+     *   <li><strong>Завершить день</strong>: Пропуск хода (эквивалентен сбору воды)</li>
+     * </ul>
+     *
+     * @return элемент {@link Node}, содержащий панель действий
+     * @see Button
+     * @see VBox
+     * @see GameController#performAction(ActionType, Object...)
      */
     private Node createActionPanel() {
         actionButtons = new VBox(10);
@@ -288,7 +444,19 @@ public class GameView {
     }
 
     /**
-     * Создает информационную панель
+     * Создает левую панель интерфейса с информацией об игроках и правилами игры.
+     * <p>
+     * Панель содержит:
+     * <ul>
+     *   <li>Ресурсы игрока (динамически обновляемые)</li>
+     *   <li>Ресурсы компьютерного противника (AI)</li>
+     *   <li>Правила игры в текстовом виде</li>
+     * </ul>
+     *
+     * @return элемент {@link Node}, содержащий информационную панель
+     * @see Label
+     * @see TextArea
+     * @see Separator
      */
     private Node createInfoPanel() {
         infoPanel = new VBox(10);
@@ -342,7 +510,15 @@ public class GameView {
     }
 
     /**
-     * Создает строку статуса
+     * Создает нижнюю панель интерфейса (строку статуса).
+     * <p>
+     * Строка статуса отображает текущее состояние игры и прогресс
+     * захвата территории в виде {@link ProgressBar}.
+     *
+     * @return элемент {@link Node}, содержащий строку статуса
+     * @see Label
+     * @see ProgressBar
+     * @see HBox
      */
     private Node createStatusBar() {
         HBox statusBar = new HBox(10);
@@ -363,7 +539,25 @@ public class GameView {
     }
 
     /**
-     * Обновляет все элементы представления
+     * Обновляет все элементы пользовательского интерфейса на основе текущего состояния игры.
+     * <p>
+     * Метод синхронизирует отображение интерфейса с состоянием игровой модели,
+     * вызывая методы обновления для всех компонентов:
+     * <ul>
+     *   <li>Текущий игровой день</li>
+     *   <li>Ресурсы игрока и AI</li>
+     *   <li>Игровое поле</li>
+     *   <li>Статус игры (активна/завершена)</li>
+     *   <li>Доступность кнопок действий</li>
+     * </ul>
+     *
+     * @see #updateGameGrid()
+     * @see #updateButtonStates()
+     * @see GameController#getCurrentDay()
+     * @see GameController#getPlayerResourcesInfo()
+     * @see GameController#getAIResourcesInfo()
+     * @see GameController#isGameOver()
+     * @see GameController#getWinner()
      */
     private void updateView() {
         // Обновляем день
@@ -391,7 +585,17 @@ public class GameView {
     }
 
     /**
-     * Обновляет состояния кнопок
+     * Обновляет состояния кнопок действий в зависимости от доступности ресурсов.
+     * <p>
+     * Метод проверяет условия для каждого действия и отключает/включает
+     * соответствующие кнопки:
+     * <ul>
+     *   <li>Кнопка "Полить рис" отключается, если недостаточно воды</li>
+     *   <li>Кнопка "Построить дом крестьянина" отключается, если недостаточно ресурсов</li>
+     * </ul>
+     *
+     * @see GameController#canWaterRice()
+     * @see GameController#canBuildPeasantHouse()
      */
     private void updateButtonStates() {
         // Можно добавить логику для отключения кнопок при недостатке ресурсов
@@ -413,7 +617,11 @@ public class GameView {
     }
 
     /**
-     * Отключает кнопки действий
+     * Отключает все кнопки действий в правой панели.
+     * <p>
+     * Используется при завершении игры для предотвращения дальнейших действий.
+     *
+     * @see #enableActions()
      */
     private void disableActions() {
         Node actionPanel = mainLayout.getRight();
@@ -427,7 +635,11 @@ public class GameView {
     }
 
     /**
-     * Включает кнопки действий
+     * Включает все кнопки действий в правой панели.
+     * <p>
+     * Используется при начале новой игры или загрузке существующей.
+     *
+     * @see #disableActions()
      */
     private void enableActions() {
         Node actionPanel = mainLayout.getRight();
@@ -441,7 +653,15 @@ public class GameView {
     }
 
     /**
-     * Начинает новую игру
+     * Начинает новую игру после подтверждения пользователем.
+     * <p>
+     * Показывает диалоговое окно с подтверждением, так как текущий прогресс
+     * будет потерян. При подтверждении вызывает метод {@link GameController#newGame()}
+     * и обновляет интерфейс.
+     *
+     * @see Alert
+     * @see GameController#newGame()
+     * @see #updateView()
      */
     private void startNewGame() {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -458,7 +678,15 @@ public class GameView {
     }
 
     /**
-     * Сохраняет игру
+     * Сохраняет текущую игру в стандартный файл.
+     * <p>
+     * Использует стандартный путь к файлу сохранения из {@link Constants#SAVE_FILE}.
+     * Показывает информационное сообщение о результате операции.
+     *
+     * @see GameController#saveGame(String)
+     * @see Constants#SAVE_FILE
+     * @see #showInfo(String, String)
+     * @see #showError(String, String)
      */
     private void saveGame() {
         if (gameController.saveGame(Constants.SAVE_FILE)) {
@@ -469,7 +697,16 @@ public class GameView {
     }
 
     /**
-     * Загружает игру
+     * Загружает игру из стандартного файла.
+     * <p>
+     * Использует стандартный путь к файлу сохранения из {@link Constants#SAVE_FILE}.
+     * Показывает информационное сообщение о результате операции и обновляет интерфейс.
+     *
+     * @see GameController#loadGame(String)
+     * @see Constants#SAVE_FILE
+     * @see #updateView()
+     * @see #showInfo(String, String)
+     * @see #showError(String, String)
      */
     private void loadGame() {
         if (gameController.loadGame(Constants.SAVE_FILE)) {
@@ -481,7 +718,14 @@ public class GameView {
     }
 
     /**
-     * Показывает статистику
+     * Открывает окно с графиками статистики игры.
+     * <p>
+     * Создает новое окно ({@link Stage}) и отображает в нем графики,
+     * построенные с использованием класса {@link GraphView}.
+     *
+     * @see GraphView
+     * @see Stage
+     * @see Scene
      */
     private void showStatistics() {
         graphView = new GraphView(gameController.getGameModel().getStatistics());
@@ -492,7 +736,11 @@ public class GameView {
     }
 
     /**
-     * Показывает диалог "Об игре"
+     * Показывает диалоговое окно с информацией об игре.
+     * <p>
+     * Содержит описание игры, информацию о разработчике и основные функции.
+     *
+     * @see Alert
      */
     private void showAboutDialog() {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -512,7 +760,11 @@ public class GameView {
     }
 
     /**
-     * Показывает информационное сообщение
+     * Показывает информационное диалоговое окно.
+     *
+     * @param title заголовок окна
+     * @param message текст сообщения
+     * @see Alert
      */
     private void showInfo(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -523,7 +775,11 @@ public class GameView {
     }
 
     /**
-     * Показывает сообщение об ошибке
+     * Показывает диалоговое окно с сообщением об ошибке.
+     *
+     * @param title заголовок окна
+     * @param message текст сообщения об ошибке
+     * @see Alert
      */
     private void showError(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -534,7 +790,12 @@ public class GameView {
     }
 
     /**
-     * Возвращает главный макет
+     * Возвращает основной макет пользовательского интерфейса.
+     * <p>
+     * Этот метод используется главным классом приложения ({@link main.java.com.turngame.Main})
+     * для получения корневого элемента сцены.
+     *
+     * @return основной макет интерфейса {@link BorderPane}
      */
     public BorderPane createMainView() {
         return mainLayout;

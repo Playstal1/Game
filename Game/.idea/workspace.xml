@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="7a827e77-897a-477a-8807-d5f0d81c8e61" name="Changes" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../../.." />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "customColor": "",
+  "associatedIndex": 4
+}]]></component>
+  <component name="ProjectId" id="363tm6QOmXiXVp9cLWwyCisqmCP" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Game.executor": "Run",
+    "JUnit.GameModelTest.testBuildPeasantHouseWithEnoughResources.executor": "Run",
+    "JUnit.GameModelTest.testCollectWaterAction.executor": "Run",
+    "JUnit.GameModelTest.testDayProgression.executor": "Run",
+    "JUnit.GameModelTest.testExploreTileInvalidCoordinates.executor": "Run",
+    "JUnit.GameModelTest.testExploreTileValid.executor": "Run",
+    "JUnit.GameModelTest.testGameVictoryCondition.executor": "Run",
+    "JUnit.GameModelTest.testInitialGameState.executor": "Run",
+    "JUnit.GameModelTest.testWaterRiceActionWithEnoughWater.executor": "Run",
+    "JUnit.GameModelTest.testWaterRiceActionWithoutEnoughWater.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "onboarding.tips.debug.path": "C:/Users/plays/Documents/GitHub/University/3 Семестр/Java/Game/Game/src/Main.java",
+    "project.structure.last.edited": "Facets",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.35517243"
+  }
+}]]></component>
+  <component name="RunManager" selected="Application.Game">
+    <configuration name="Game" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="main.java.com.turngame.Main" />
+      <module name="Game" />
+      <option name="VM_PARAMETERS" value="--module-path=&quot;C:\Users\plays\Documents\GitHub\University\3 Семестр\Java\Game\javafx-sdk-25.0.1\lib&quot; --add-modules=javafx.controls,javafx.fxml --enable-native-access=javafx.graphics" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="GameModelTest.testBuildPeasantHouseWithEnoughResources" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Game" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.java.com.turngame.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test.java.com.turngame" />
+      <option name="MAIN_CLASS_NAME" value="test.java.com.turngame.GameModelTest" />
+      <option name="METHOD_NAME" value="testBuildPeasantHouseWithEnoughResources" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="GameModelTest.testDayProgression" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Game" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.java.com.turngame.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test.java.com.turngame" />
+      <option name="MAIN_CLASS_NAME" value="test.java.com.turngame.GameModelTest" />
+      <option name="METHOD_NAME" value="testDayProgression" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="GameModelTest.testExploreTileInvalidCoordinates" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Game" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.java.com.turngame.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test.java.com.turngame" />
+      <option name="MAIN_CLASS_NAME" value="test.java.com.turngame.GameModelTest" />
+      <option name="METHOD_NAME" value="testExploreTileInvalidCoordinates" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="GameModelTest.testExploreTileValid" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Game" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.java.com.turngame.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test.java.com.turngame" />
+      <option name="MAIN_CLASS_NAME" value="test.java.com.turngame.GameModelTest" />
+      <option name="METHOD_NAME" value="testExploreTileValid" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="GameModelTest.testGameVictoryCondition" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Game" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.java.com.turngame.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test.java.com.turngame" />
+      <option name="MAIN_CLASS_NAME" value="test.java.com.turngame.GameModelTest" />
+      <option name="METHOD_NAME" value="testGameVictoryCondition" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.Game" />
+      <item itemvalue="JUnit.GameModelTest.testBuildPeasantHouseWithEnoughResources" />
+      <item itemvalue="JUnit.GameModelTest.testDayProgression" />
+      <item itemvalue="JUnit.GameModelTest.testExploreTileInvalidCoordinates" />
+      <item itemvalue="JUnit.GameModelTest.testExploreTileValid" />
+      <item itemvalue="JUnit.GameModelTest.testGameVictoryCondition" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.GameModelTest.testDayProgression" />
+        <item itemvalue="JUnit.GameModelTest.testGameVictoryCondition" />
+        <item itemvalue="JUnit.GameModelTest.testBuildPeasantHouseWithEnoughResources" />
+        <item itemvalue="JUnit.GameModelTest.testExploreTileInvalidCoordinates" />
+        <item itemvalue="JUnit.GameModelTest.testExploreTileValid" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="7a827e77-897a-477a-8807-d5f0d81c8e61" name="Changes" comment="" />
+      <created>1764247242204</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1764247242204</updated>
+    </task>
+    <servers />
+  </component>
+</project>
